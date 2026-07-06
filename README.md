@@ -17,8 +17,8 @@ This repository contains a sample homework project created for an educational co
 The project supports local image files from static resources.
 
 - Add custom animal photos to `src/main/resources/static/images/animals/`
-- Store only the filename in the animal field, for example `luna.jpg`
-- The app resolves that value to `/images/animals/luna.jpg`
+- Store only the filename in the animal field, for example `Luna.jpeg`
+- The app resolves that value to `/images/animals/Luna.jpeg`
 
 If image filename/url is missing, a fallback is selected by animal type:
 
