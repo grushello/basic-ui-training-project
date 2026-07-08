@@ -25,6 +25,9 @@ import org.springframework.security.web.SecurityFilterChain;
  *       {@code POST /api/animals}).</li>
  *   <li>Only ROLE_USER can adopt an animal ({@code POST /api/animals/{id}/adopt});
  *       admins are deliberately excluded since they don't have ROLE_USER.</li>
+ *   <li>Only ROLE_ADMIN can list adopted animals ({@code GET /api/animals/adopted}) —
+ *       a read-only endpoint, handy for testing role-based JWT authorization (bonus
+ *       task below) without any side effects.</li>
  *   <li>Only ROLE_ADMIN sees the "adopted by {userId} on {date}" note —
  *       enforced in {@code AnimalService#toResponse}, not here, since it's a
  *       field-level (not URL-level) restriction.</li>
@@ -99,6 +102,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,
                                 "/", "/*.html", "/css/**", "/js/**", "/images/**", "/favicon.ico")
                         .permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/animals/adopted").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/animals/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/animals/new").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/animals", "/animals/**").permitAll()

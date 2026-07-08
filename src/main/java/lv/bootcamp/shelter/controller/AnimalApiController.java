@@ -36,6 +36,17 @@ public class AnimalApiController {
     }
 
     /**
+     * Lists adopted animals. Restricted to ROLE_ADMIN — see SecurityConfig.
+     * Read-only, so it's a good endpoint for testing role-based JWT authorization:
+     * calling it repeatedly (e.g. with/without a token, or with a ROLE_USER token)
+     * has no side effects, unlike {@code POST /api/animals}.
+     */
+    @GetMapping("/adopted")
+    public List<AnimalResponse> findAdopted() {
+        return animalService.findAdopted();
+    }
+
+    /**
      * Creates a new animal. Restricted to ROLE_ADMIN — see SecurityConfig.
      */
     @PostMapping

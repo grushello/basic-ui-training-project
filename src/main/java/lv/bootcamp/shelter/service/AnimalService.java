@@ -49,6 +49,18 @@ public class AnimalService {
     }
 
     /**
+     * Returns all adopted animals, sorted by ID. Read-only, so it is a convenient way to
+     * exercise ROLE_ADMIN-only authorization (e.g. with a JWT) without any side effects —
+     * unlike {@code POST /api/animals}, calling this repeatedly does not create data.
+     */
+    public List<AnimalResponse> findAdopted() {
+        return animalRepository.findAll().stream()
+                .filter(animal -> animal.getStatus() == AnimalStatus.ADOPTED)
+                .map(this::toResponse)
+                .toList();
+    }
+
+    /**
      * Creates a new animal with status AVAILABLE and persists it.
      */
         public AnimalResponse create(AnimalCreateRequest request) {
