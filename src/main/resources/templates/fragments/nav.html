@@ -1,0 +1,24 @@
+<nav th:fragment="nav">
+    <a href="/">Home</a>
+
+    <a href="/animals">All animals</a>
+
+    <a href="/animals/new" th:if="${isAdmin}">
+        Add animal
+    </a>
+
+    <a href="/login" th:if="${!isAuthenticated}">
+        Login
+    </a>
+
+    <form th:action="@{/logout}"
+          method="post"
+          th:if="${isAuthenticated}"
+          style="display:inline">
+
+        <button class="logout-link" type="submit">
+            Logout
+        </button>
+
+    </form>
+</nav>
