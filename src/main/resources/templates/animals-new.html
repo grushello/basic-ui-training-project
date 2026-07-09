@@ -1,36 +1,5 @@
 <!DOCTYPE html>
-<!--
-  ╔══════════════════════════════════════════════════════════════════╗
-  ║  TASK A — STEP 5: ADD-ANIMAL FORM PAGE                           ║
-  ╠══════════════════════════════════════════════════════════════════╣
-  ║  This is a plain static draft — the form does not submit yet.    ║
-  ║                                                                  ║
-  ║  Your job:                                                       ║
-  ║  1. Move this file to:                                           ║
-  ║       src/main/resources/templates/animals-new.html              ║
-  ║  2. Add xmlns:th="http://www.thymeleaf.org" to <html>            ║
-  ║  3. In AnimalPageController add:                                 ║
-  ║       @GetMapping("/animals/new")                                ║
-  ║       public String newAnimalForm(Model model) {                 ║
-  ║           model.addAttribute("form",                             ║
-  ║               new AnimalForm(null,null,null,null,null,null));    ║
-  ║           return "animals-new";                                  ║
-  ║       }                                                          ║
-  ║  4. Replace <form action=...> with th:action="@{/animals}"       ║
-  ║     and add th:object="${form}" to <form>                        ║
-  ║  5. Replace each name="..." with th:field="*{fieldName}"         ║
-  ║     (you can remove name= and id= — th:field sets them)          ║
-  ║  6. Add POST /animals → create + redirect                        ║
-  ║                                                                  ║
-  ║  ADMIN-only page (see SecurityConfig):                           ║
-  ║  7. GET /animals/new and POST /animals are already restricted    ║
-  ║     to ROLE_ADMIN on the backend. Also guard this page:          ║
-  ║       @GetMapping("/animals/new") should redirect (or 403) non-  ║
-  ║       admins instead of just relying on the security filter.     ║
-  ║  8. Only link to this page ("Add animal" in the nav) when        ║
-  ║     isAdmin is true.                                             ║
-  ╚══════════════════════════════════════════════════════════════════╝
--->
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
@@ -73,11 +42,6 @@
 <main>
   <h1>Add a new animal</h1>
 
-  <!--
-    TODO: replace action="/animals" with th:action="@{/animals}"
-          add th:object="${form}" to <form>
-          replace name="..." on each input with th:field="*{fieldName}"
-  -->
   <form th:action="@{/animals}"
         th:object="${form}"
         method="post">
